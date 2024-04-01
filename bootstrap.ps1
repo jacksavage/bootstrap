@@ -18,4 +18,6 @@ Set-Location -Path "./bootstrap"
 
 # test configuration
 # https://learn.microsoft.com/en-us/windows/package-manager/winget/configure#configure-subcommands
+# todo would be great to use sudo here
+# https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/
 winget configure test --file ./configurations/configuration.dsc.yaml
