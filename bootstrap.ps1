@@ -8,5 +8,14 @@ Invoke-WebRequest -Uri https://aka.ms/getwingetpreview -OutFile $wingetInstallFi
 Add-AppPackage -Path $wingetInstallFile
 Remove-Item -Path $wingetInstallFile
 
-# apply configuration
-winget configure --file ./configurations/configuration.dsc.yaml
+# install git
+winget install --id Git.Git -e --source winget
+$env:PATH += ";${env:ProgramFiles}\Git\cmd"
+
+# clone the repo
+git clone "https://github.com/jacksavage/bootstrap.git"
+Set-Location -Path "./bootstrap"
+
+# test configuration
+# https://learn.microsoft.com/en-us/windows/package-manager/winget/configure#configure-subcommands
+winget configure test --file ./configurations/configuration.dsc.yaml
