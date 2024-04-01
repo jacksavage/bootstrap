@@ -20,4 +20,5 @@ Set-Location -Path "./bootstrap"
 # https://learn.microsoft.com/en-us/windows/package-manager/winget/configure#configure-subcommands
 # todo would be great to use sudo here
 # https://devblogs.microsoft.com/commandline/introducing-sudo-for-windows/
+# todo --disable-interactivity
 winget configure test --file ./configurations/configuration.dsc.yaml
