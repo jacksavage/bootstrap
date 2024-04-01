@@ -8,19 +8,6 @@ Invoke-WebRequest -Uri https://aka.ms/getwingetpreview -OutFile $wingetInstallFi
 Add-AppPackage -Path $wingetInstallFile
 Remove-Item -Path $wingetInstallFile
 
-# enable winget "configure" feature
-$wingetSettingsFile =
-winget settings export `
-| ConvertFrom-Json `
-| Select-Object -ExpandProperty userSettingsFile
-$wingetSettings =
-  Get-Content -Path $wingetSettingsFile -Raw `
-  | ConvertFrom-Json
-$wingetSettings.experimentalFeatures.configuration03 = $true
-$wingetSettings `
-| ConvertTo-Json -Depth 10 `
-| Set-Content -Path $wingetSettingsFile
-
 # stop if winget not available
 # https://learn.microsoft.com/en-us/windows/package-manager/winget/
 Get-Command -Name winget -ErrorAction Stop
